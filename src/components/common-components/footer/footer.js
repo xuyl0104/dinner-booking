@@ -8,13 +8,18 @@ class Footer extends Component {
         let numOfItems = this.getNumOfItems(selectedItemInfo);
         //商品总金额
         let sumOfItems = this.getSumOfItems(selectedItemInfo);
+        //"下单"按钮控制
+        let orderButtonAvailable = this.props.orderButtonAvailable;
         return (
             <footer className="footer">
                 <div className="cartImage">
                     <img src={require("../../../images/avatar-large.png")} onClick={this.onCartClicked.bind(this)} alt=""></img>
                 </div>
                 <div className="sum">共{numOfItems}件&nbsp;&nbsp;¥{sumOfItems}</div>
-                <div className="order" onClick={this.onOrderClicked.bind(this)}><span>下单</span></div>
+                
+                <div className={`order ${!orderButtonAvailable ? 'unavailable' : ''}`}  onClick={this.onOrderClicked.bind(this)}>
+                    <button disabled={!orderButtonAvailable}>下单</button>
+                </div>
             </footer>
         );
     }

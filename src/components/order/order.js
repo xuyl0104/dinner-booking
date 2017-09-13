@@ -18,15 +18,51 @@ class Order extends Component {
         // console.log(selectedItemInfo);
         // console.log(selectedCanteenInfo);
         this.state = {
+            //页面控制状态
+            isDataPickerOpen: false,
+            warningInfo: "",
+
             selectedCanteenInfo: selectedCanteenInfo,//餐厅信息
             selectedItemInfo: selectedItemInfo,//菜信息
-            planMealTime: '',//计划就餐时间
-            bookPersonTel: '',
+            planMealTime: "",//计划就餐时间
+            bookPersonTel: "",
             payType: 0,
-            paymentPerson: '',
+            paymentPerson: "",
             totalPrice: 0,
-            orderTime: ''
+            orderTime: ""
         };
+        this.handleTelChange = this.handleTelChange.bind(this);
+    }
+
+    /**
+     * 订餐人联系电话检测，保证只能输入数字
+     * @param {*} event 
+     */
+    handleTelChange(event) {
+        let val = event.target.value;
+        if(isNaN(val)){
+            this.setState((prevState) => ({
+                warningInfo: "只能输入数字!",
+                bookPersonTel: prevState.bookPersonTel
+            }));
+            setTimeout(function(){
+                this.setState({warningInfo: ""});
+            }.bind(this),1000);
+        }else{
+            this.setState({bookPersonTel: val}); 
+        }
+    }
+
+    /**
+     * 必填项校验
+     */
+    validation() {
+        let state = this.state;
+        if(!state.bookPersonTel || state.bookPersonTel.trim() === "") {
+            alert("请输入联系电话！");
+            return false;
+        }
+        return true;
     }
 
     render() {
@@ -52,12 +88,12 @@ class Order extends Component {
                 <div className="orderPage">
                     <div className="form-group">
                         <label>就餐时间</label>
-                        <div><span className="orderInfo-right">{moment().format('YYYY-MM-DD HH:mm:ss')}</span></div>
+                        <div><span className="orderInfo-right" id="planMealTime">{moment().format('YYYY-MM-DD HH:mm:ss')}</span></div>
                     </div>
                     <div className="form-group">
-                        <label>联系电话</label>
-                        <input className="orderInfo-right text-right" onChange={(e) => {this.setState({bookPersonTel: e.target.value})}}
-                            required="required" pattern="[0-9]" defaultValue={this.state.bookPersonTel}></input>
+                        <label>联系电话</label><label style={{'color': 'red'}}>{this.state.warningInfo}</label>
+                        <label><input id="bookPersonTel" className="orderInfo-right text-right" onChange={this.handleTelChange}
+                            required="required" pattern="[0-9]" value={this.state.bookPersonTel}></input></label>
                     </div>
 
                     <div className="payment">
@@ -108,17 +144,22 @@ class Order extends Component {
      * 须要try catch
      */
     submitOrder() {
-        let orderTime = this.dateFtt("yyyy-MM-dd hh:mm:ss", new Date());
-        //打包订单信息
-        //上传成功后，删除购物车信息（在此暂时保留）->
-        //window.sessionStorage.removeItem("selectedItemInfo"); ->
-        //转到订单列表界面 ->
-        //setState异步执行，是个坑，不知这样是否合适
-        this.setState({orderTime: orderTime}, ()=>{
-            window.localStorage.setItem("orders", JSON.stringify(this.state));
-            this.goToOrderList();
-            window.sessionStorage.clear("selectedItemInfo");
-        });
+        let validationStatus = this.validation();
+        if (!validationStatus) {
+            return;
+        } else {
+            let orderTime = this.dateFtt("yyyy-MM-dd hh:mm:ss", new Date());
+            //打包订单信息
+            //上传成功后，删除购物车信息（在此暂时保留）->
+            //window.sessionStorage.removeItem("selectedItemInfo"); ->
+            //转到订单列表界面 ->
+            //setState异步执行，是个坑，不知这样是否合适
+            this.setState({orderTime: orderTime}, ()=>{
+                window.localStorage.setItem("orders", JSON.stringify(this.state));
+                this.goToOrderList();
+                window.sessionStorage.clear("selectedItemInfo");
+            });
+        }
     }
 
     goToOrderList() {

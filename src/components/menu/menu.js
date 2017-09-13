@@ -11,11 +11,11 @@ import './menu.css';
 class Menu extends Component {
     constructor(props) {
         super(props);
-        let canteenInfo = this.props.location.state;//这个方法不好
-        // let menuSelectedInfo = JSON.parse(window.sessionStorage.getItem("menuSelectedInfo")) || {};
+        let canteenInfo = JSON.parse(window.sessionStorage.getItem("selectedCanteenInfo"));//这个方法不好,没使用
+        let selectedItemInfo = JSON.parse(window.sessionStorage.getItem("selectedItemInfo")) || [];
         this.state = {
             queryState: window.sessionStorage.getItem("cp_queryState")||'炒菜', //菜品选择：选择炒菜（cc）还是套餐（tc），默认为套餐，用于Tab页展示
-            canteenInfo: JSON.parse(window.sessionStorage.getItem("selectedCanteenInfo")),
+            canteenInfo: canteenInfo,
             // 正式开发中，从数据库找到编号为canteenInfo的餐厅所提供的套餐和炒菜
             // 数据获取放在componentDidMount()中！！！！！！
             menuItemsCC: [
@@ -62,11 +62,10 @@ class Menu extends Component {
             //加载Menu页时，查询该用户在该餐厅的购物车信息，若信息为空，初始化为[]
             //返回到餐厅页面时，该属性需要写入数据库（这样设计我认为不合理，可以讨论...）
             //暂时用session替代
-            selectedItemInfo: JSON.parse(window.sessionStorage.getItem("selectedItemInfo")) || [],
+            selectedItemInfo: selectedItemInfo,
 
             //是否弹出购物车界面，控制弹出界面是否隐藏
-            showCart: false
-            // orderButtonAvailable: this.state.selectedItemInfo.length > 0 ? true : false
+            showCart: false,
         };  
         this.clickCart = this.clickCart.bind(this);
     }
@@ -100,7 +99,7 @@ class Menu extends Component {
         return (
             <div>
                 <Header name={"餐厅详情"} onLeftArrowClick={() => this.backToCanteenList()}/>
-                <Tabs tabs={["炒菜", "套餐"]} callBackParent={this.changeTab.bind(this)}/>
+                <Tabs tabs={['炒菜', '套餐']} queryState={this.state.queryState} callBackParent={this.changeTab.bind(this)}/>
                 <div className="itemList">
                     {itemDivs}
                 </div>
@@ -111,7 +110,8 @@ class Menu extends Component {
                     show={this.state.showCart} />
                 <Footer selectedItemInfo={this.state.selectedItemInfo} 
                     callBackClickCart={this.clickCart.bind(this)}
-                    callBackOrder={this.clickOrder.bind(this)}/>
+                    callBackOrder={this.clickOrder.bind(this)}
+                    orderButtonAvailable={this.state.selectedItemInfo.length > 0 ? true : false}/>
             </div>
         );
     }

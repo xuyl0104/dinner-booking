@@ -6,7 +6,7 @@ class Tabs extends Component {
         super(props);
         this.state = {
             tabs: this.props.tabs,
-            selectedTab: ""
+            selectedTab: this.props.queryState
         };
     }
     render() {
@@ -15,7 +15,7 @@ class Tabs extends Component {
         tabDivs = this.state.tabs.map((item, index) => {
             //className可以根据tabs的个数自动选择，还未实现
             return (
-                <div className={`twoCols ${selectedTab === item} ? 'active' : ''}`} 
+                <div className={`twoCols ${selectedTab === item ? 'active' : ''}`} 
                     key={index} onClick={this.onTabChange.bind(this, item)}>{item}
                 </div>
             );

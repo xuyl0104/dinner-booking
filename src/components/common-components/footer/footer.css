@@ -40,7 +40,17 @@
     vertical-align: middle;
 }
 
+.unavailable{
+    background-color: #BCD2E3 !important;
+}
+
+
 .footer .order>span{
     display: block;
     margin-top: 14px;
+}
+.footer .order>button{
+    padding-top: 12px;
+    text-align: center;
+    color: white;
 }
