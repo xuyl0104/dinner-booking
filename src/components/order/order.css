@@ -1,0 +1,95 @@
+.pull-left{
+    float: left;
+}
+
+.pull-right{
+    float: right;
+}
+
+.orderPage{
+    position: absolute;
+    top: 56px;
+    width: 100%;
+    padding-bottom: 56px;
+    margin-bottom: 4px;
+}
+
+.noStyle{
+    position: relative;
+    top: 5px;
+    padding-left: 12px;
+}
+
+.noStyle>label{
+color: black;
+font-size: 14px;
+}
+
+.orderPage .orderInfo-right{
+    float: right;
+    font-size: 16px;
+    padding:8px 12px 0 0;
+}
+
+.payment{
+    position: relative;
+    padding-left: 12px;
+    background-color: white;
+    margin-top: 8px;
+}
+
+.payment>p{
+    font-size: 16px;
+    padding: 6px 0;
+    margin: 0;
+}
+
+.payment .radioGroup *{
+    display: inline;
+    padding: 6px 0;
+}
+
+.payment .radioGroup .radios{
+    width: 40%;
+    margin: 0;
+}
+
+
+.orderInformation{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    margin-top: 8px;
+    padding: 0 12px;
+}
+
+.orderInformation .infoLeft{
+    font-size: 16px;
+    color: black;
+    margin: 0;
+    padding: 6px 0;
+}
+
+.orderInformation .basicInfo{
+    font-size: 14px;
+    color: grey;
+}
+
+
+.categoryName{
+    font-size: 14px;
+    border-left: 5px solid #FDA907;
+    border-bottom: 1px solid white;
+    margin-top: 8px;
+    padding-left: 4px;
+}
+
+.itemsInThisOrder{
+    position: relative;
+    width: 100%;
+    background-color: white;
+    padding: 4px 0;
+    margin-top: 6px;
+}
+
+

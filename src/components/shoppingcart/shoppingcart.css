@@ -1,0 +1,121 @@
+.hiddenDiv{
+    position: fixed;
+    overflow: scroll;
+    /*position:relative;*/
+    animation:show 0.5s;
+    /*animation-fill-mode : forwards;*/
+    -moz-animation:show 0.5s forwards; /* Firefox */
+    -webkit-animation:show 0.5s forwards; /* Safari and Chrome */
+    -o-animation:show 0.5s forwards; /* Opera */
+    /*bottom: -400px;*/
+    /*visibility: hidden;*/
+    z-index: 99;
+    width: 100%;
+    max-height: 300px;
+    background-color: #FBF9EF;
+}
+
+@keyframes show
+{
+    0%   {bottom: -400px;}
+    100% {bottom: 56px;}
+}
+
+@-webkit-keyframes show /* Safari and Chrome */
+{
+    0%   {bottom: -400px;}
+    100% {bottom: 56px;}
+}
+
+/*------------------------------------------*/
+
+.visibleDiv{
+    position: fixed;
+    overflow: scroll;
+    /*position:relative;*/
+    animation:hide 0.5s;
+    /*animation-fill-mode : forwards;*/
+    -moz-animation:hide 0.5s forwards; /* Firefox */
+    -webkit-animation:hide 0.5s forwards; /* Safari and Chrome */
+    -o-animation:hide 0.5s forwards; /* Opera */
+    /*bottom: -400px;*/
+    /*visibility: hidden;*/
+    z-index: 99;
+    width: 100%;
+    max-height: 300px;
+    background-color: white;
+}
+
+@keyframes hide
+{
+    100% {bottom: -400px;}
+}
+
+@-webkit-keyframes hide /* Safari and Chrome */
+{
+    100% {bottom: -400px;}
+}
+
+
+.hiddenDiv .header{
+    margin: 4px 12px;
+}
+
+.hiddenDiv .header>span{
+    font-size: 18px;
+}
+
+.hiddenDiv .header .clear{
+    float: right;
+    font-size: 18px;
+}
+
+.hiddenDiv .category{
+    margin: 0 12px 4px 12px;
+}
+
+.hiddenDiv .category .categoryName{
+    font-size: 14px;
+    border-left: 5px solid #FDA907;
+    border-bottom: 1px solid #FFFFF0;
+    padding-left: 4px;
+}
+
+.hiddenDiv .category .item{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    font-size: 18px;
+    /*float: left;*/
+}
+.hiddenDiv .category .item .left{
+    float: left;
+}
+
+.hiddenDiv .category .item .right{
+    float: right;
+}
+
+
+.hiddenDiv .category .item .right .remove{
+    margin: 0 8px 0 20px;
+    color: grey;
+    text-align: center;
+    background-color: white;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+
+.hiddenDiv .category .item .right .add{
+    margin: 0 4px 0 8px;
+    color: white;
+    text-align: center;
+    background-color: red;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+}

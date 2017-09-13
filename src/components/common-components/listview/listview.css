@@ -1,0 +1,14 @@
+  .form-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    width: 100%;
+    background: #fff;
+    margin: 0;
+    border-bottom: 1px solid #e2e2e2;
+    height: 50px;
+  }
+
+  .subList{
+    margin: 0px 0;
+  }

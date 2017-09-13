@@ -1,0 +1,43 @@
+ .orderCardInList{
+    position: relative;
+    height: 90px;
+    background-color: white;
+    width: 100%;
+    font-size: 14px;
+    margin: 0 0 5px 0;
+    padding-top: 10px;
+    line-height: 1.5em;
+}
+
+  .orderCardInList .leftBlock{
+    float: left;
+    padding-left: 12px;
+}
+
+  .orderCardInList .leftBlock *{
+    font-size: 14px;
+    color: black;
+}
+
+  .orderCardInList .rightBlock{
+    float: right;
+    padding-right: 12px
+}
+
+  .orderCardInList .rightBlock .orderStatus{
+    text-align: right;
+}
+
+  .orderCardInList .rightBlock .making{
+    color: #0f88eb;
+}
+
+  .orderCardInList .rightBlock .success{
+    color: #f0bf55;
+}
+  .orderCardInList .rightBlock .tobevalidated{
+    color: red;
+}
+  .orderCardInList .rightBlock .fail{
+    color: grey;
+}

@@ -1,0 +1,15 @@
+.listGroup{
+  position: relative;
+  top: 60px;
+}
+
+.noStyle{
+  position: relative;
+  top: 5px;
+  padding-left: 12px;
+}
+
+.noStyle>label{
+  color: black;
+  font-size: 14px;
+}

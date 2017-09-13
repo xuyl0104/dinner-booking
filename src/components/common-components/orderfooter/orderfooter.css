@@ -1,0 +1,28 @@
+.footer{
+    position: fixed;
+    bottom: 0px;
+    height: 56px;
+    margin-bottom: 0;
+    border: none;
+    background-color: 318ccf;
+    color: #318ccf;
+    padding: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+.footer-brand {
+    position: relative;
+    height: 48px;
+    line-height: 30px;
+    padding: 12px 20px;
+    margin-left: -56px;
+    display: inline-block;
+    float: none;
+    left: 50%;
+    font-size: 18px;
+}
+
+.text-center {
+    text-align: center;
+  }

@@ -1,0 +1,30 @@
+.listGroup{
+    position: relative;
+}
+
+.noStyle{
+    position: relative;
+    top: 5px;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+  
+.noStyle>label{
+    color: black;
+    font-size: 14px;
+}
+
+.form-group{
+      margin-top: 10px;
+}
+
+.positionDiv{
+    margin-bottom: 12px;
+}
+
+.arrowImage{
+    margin-top: 14px;
+    height: 20px;
+}
+
+

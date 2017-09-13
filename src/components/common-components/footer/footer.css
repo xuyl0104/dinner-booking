@@ -1,0 +1,46 @@
+.footer{
+    position: fixed;
+    bottom: 0px;
+    height: 56px;
+    margin-bottom: 0;
+    border: none;
+    background-color: white;
+    padding: 0px;
+    z-index: 100;
+    width: 100%;
+}
+
+.footer .cartImage{
+    margin: 7px 0 0 12px;
+    float: left;
+}
+
+.footer .cartImage>img{
+    height: 40px;
+    width: 40px;
+}
+
+.footer .sum{
+    color: red;
+    font-size: 18px;
+    font-weight: bold;
+    float: left;
+    padding: 15px 0 0 12px;
+}
+
+.footer .order{
+    float: right;
+    width:120px;
+    height: inherit;
+    background-color: #0f88eb;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.footer .order>span{
+    display: block;
+    margin-top: 14px;
+}

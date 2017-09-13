@@ -1,0 +1,28 @@
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+
+ .orderList{
+    position: relative;
+    margin-top: 56px;
+    width: 100%;
+}
+
+ 

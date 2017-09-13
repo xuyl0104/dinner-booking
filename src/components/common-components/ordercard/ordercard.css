@@ -1,0 +1,76 @@
+
+  .orderCard{
+  position: relative;
+  height: 120px;
+  background-color: #FCFCFC;
+  width: 100%;
+  font-size: 14px;
+  margin: 0 0 5px 0;
+  padding-top: 5px;
+}
+
+  .orderCard .orderImageblock{
+    position: absolute;
+    left: 12px;
+    height: 90px;
+    width: 90px;
+    display: block;
+    background-color: cyan;
+    float: left;
+}
+
+.orderCard .orderImageblock>img{
+  height: 90px;
+  width: 90px;
+}
+
+  .orderCard .itemInfo{
+    height: 110px;
+    background-color: #FCFCFC;
+    vertical-align: middle;
+    padding-top: 8px;
+    margin: 0 40px 0 110px;
+}
+
+
+  .orderCard .itemInfo .isSpecial{
+    background-color: red;
+    color: white;
+    font-size: 12px;
+    padding: 1px;
+    border-radius: 3px;
+}
+
+  .orderCard .itemInfo .itemName{
+    font-size: 14px;
+    color: black;
+    height: 16px;
+    overflow: hidden;
+}
+
+  .orderCard .itemInfo .itemContent{
+    font-size: 12px;
+    color: grey;
+    max-height: 35px;
+    overflow: hidden;
+}
+
+  .orderCard .itemInfo .itemPrice{
+    color: red;
+    font-weight: bold;
+    padding: 6px 0 0 0;
+}
+
+  .orderCard .addToCart{
+    position: absolute;
+    top: 95px;
+    right: 10px;
+    color: black;
+    font-size: 18px;
+    color: red;
+    text-align: center;
+    background-color: #FCFCFC;
+    display: block;
+    height: 18px;
+    width: 18px;
+}
