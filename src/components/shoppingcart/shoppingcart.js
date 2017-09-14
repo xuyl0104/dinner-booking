@@ -31,9 +31,9 @@ class ShoppingCart extends Component {
                     </div>
                     <div className="right">
                         <span>￥{item.price}</span>
-                        <div className="remove" onClick={this.removeOne.bind(this, item)}>-</div>
+                        <span id="removeButton"><div className="remove" onClick={this.removeOne.bind(this, item)}>-</div></span>
                         <span className="num">{item.num}</span>
-                        <div className="add" onClick={this.addOne.bind(this, item)}>+</div>
+                        <span id="addButton"><div className="add" onClick={this.addOne.bind(this, item)}>+</div></span>
                     </div>
                 </div>
             );
