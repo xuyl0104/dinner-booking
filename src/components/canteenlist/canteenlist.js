@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../common-components/header/header';
 import Listview from '../common-components/listview/listview';
+import CanteenCard from '../common-components/canteencard/canteencard';
 import './canteenlist.css';
 
 class CanteenList extends Component {
@@ -27,7 +28,7 @@ class CanteenList extends Component {
                 let canteensInThisPosition = this.getCanteensInThisPosition(pid);
                 let canteensInThisPositionDivs;
                 canteensInThisPositionDivs = canteensInThisPosition.map((canteen, cindex) => {
-                return (<Listview name={canteen.name} key={cindex} onClick={this.getSelectedCanteen.bind(this, canteen)}/>);
+                return (<CanteenCard key={cindex} onCardClick={this.getSelectedCanteen.bind(this, canteen)}/>);
                 });
                 return (
                     <div className="positionDiv" key={pindex}>

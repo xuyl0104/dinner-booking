@@ -68,7 +68,7 @@ class Order extends Component {
 
     render() {
         let time = this.state.time;
-        console.log(time);
+        let minTime = new Date();
         let itemsCCInThisOrder = [];
         let itemsTCInThisOrder = [];
         itemsCCInThisOrder = this.state.selectedItemInfo.filter((item) => item.type === "cc");
@@ -103,7 +103,8 @@ class Order extends Component {
                             onCancel={this.handleCancel}
                             dateFormat={['MM', 'DD', 'hh', 'mm']}
                             showFormat={'YYYY-MM-DD hh:mm'}
-                            theme={'android'} />
+                            theme={'android'} 
+                            />
                     </div>
 
                     <div className="form-group">
@@ -154,22 +155,22 @@ class Order extends Component {
         );
     }
 
+    /**
+     * 时间选择器相关函数
+     */
 
     handleClick = () => {
         this.setState({ isOpen: true });
     }
-
     handleCancel = () => {
         this.setState({ isOpen: false });
     }
-
     handleSelect = (time) => {
         this.setState({ time, isOpen: false });
     }
-
     getDateString(time) {
         let year = time.getFullYear();
-        let month = time.getMonth() < 10 ? ("0"+time.getMonth()) : time.getMonth();
+        let month = time.getMonth() < 9 ? ("0"+(time.getMonth()+1)) : (time.getMonth()+1); //0-11，0代表1月，坑...
         let day = time.getDate() < 10 ? ("0"+time.getDate()) : time.getDate();
         let hour = time.getHours() < 10 ? ("0"+time.getHours()) : time.getHours();
         let minute = time.getMinutes() < 10 ? ("0"+time.getMinutes()) : time.getMinutes();
