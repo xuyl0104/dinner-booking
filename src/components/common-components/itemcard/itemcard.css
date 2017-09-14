@@ -1,4 +1,4 @@
- .itemList{
+.itemList{
     position: reletive;
     margin-top: 100px;
     width: 100%;
@@ -6,7 +6,7 @@
     /*background-color: white;*/
 }
 
- .itemList .itemCard{
+.itemList .itemCard{
   position: relative;
   height: 120px;
   background-color: white;
@@ -16,7 +16,7 @@
   padding-top: 5px;
 }
 
- .itemList .itemCard .imageblock{
+.itemList .itemCard .imageblock{
     position: absolute;
     left: 12px;
     height: 90px;
@@ -35,7 +35,7 @@
     height: 110px;
     background-color: #ffffff;
     vertical-align: middle;
-    padding-top: 8px;
+    padding-top: 1px;
     margin: 0 40px 0 110px;
 }
 
@@ -44,12 +44,13 @@
     background-color: red;
     color: white;
     font-size: 12px;
-    padding: 1px;
+    padding: 3px;
     border-radius: 3px;
+    margin-right: 5px;
 }
 
  .itemList .itemCard .itemInfo .itemName{
-    font-size: 14px;
+    font-size: 15px;
     color: black;
     height: 16px;
     overflow: hidden;
@@ -70,13 +71,19 @@
 
  .itemList .itemCard .addToCart{
     position: absolute;
-    top: 95px;
+    top: 80px;
     right: 10px;
     color: white;
     text-align: center;
     background-color: red;
     display: block;
-    height: 18px;
-    width: 18px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
+    font-family: Arial;
+    font-size: 28px;
+}
+
+.itemList .itemCard .addToCart>span{
+    font-family: Arial;
 }

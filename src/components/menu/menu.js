@@ -77,8 +77,8 @@ class Menu extends Component {
         itemsTCInThisCanteen = this.getItemsTC(this.state.canteenInfo.id);
         let selectedItemInfo = [];//购物车信息
         let itemDivs;
-        if(this.state.menuItemsCC.length === 0 && this.state.menuItemsTC.length === 0){
-            itemDivs = <div>饿肚子吧你。</div>
+        if(itemsCCInThisCanteen.length === 0 && itemsTCInThisCanteen === 0){
+            itemDivs = <div className="itemList">饿肚子吧你。</div>
         }else{
             if(this.state.queryState === '炒菜'){//选择炒菜
                 itemDivs = itemsCCInThisCanteen.map((item, index) => {

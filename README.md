@@ -4,6 +4,8 @@
 
 > git clone git@github.com:xuyl0104/dinner-booking.git
 >
+> cd ./dinner-booking
+>
 > npm install
 >
 > npm start

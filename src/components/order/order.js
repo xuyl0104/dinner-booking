@@ -15,12 +15,13 @@ class Order extends Component {
         let selectedCanteenInfo = JSON.parse(window.sessionStorage.getItem("selectedCanteenInfo"));
         let selectedItemInfo = JSON.parse(window.sessionStorage.getItem("selectedItemInfo"));
         let orderTime = JSON.parse(window.sessionStorage.getItem("orderTime"));
-        // console.log(selectedItemInfo);
-        // console.log(selectedCanteenInfo);
+
         this.state = {
             //页面控制状态
             isDataPickerOpen: false,
             warningInfo: "",
+            time: new Date(),
+            isOpen: false,
 
             selectedCanteenInfo: selectedCanteenInfo,//餐厅信息
             selectedItemInfo: selectedItemInfo,//菜信息
@@ -66,7 +67,8 @@ class Order extends Component {
     }
 
     render() {
-
+        let time = this.state.time;
+        console.log(time);
         let itemsCCInThisOrder = [];
         let itemsTCInThisOrder = [];
         itemsCCInThisOrder = this.state.selectedItemInfo.filter((item) => item.type === "cc");
@@ -88,12 +90,26 @@ class Order extends Component {
                 <div className="orderPage">
                     <div className="form-group">
                         <label>就餐时间</label>
-                        <div><span className="orderInfo-right" id="planMealTime">{moment().format('YYYY-MM-DD HH:mm:ss')}</span></div>
+                        <div>
+                            <div id="planMealTime" onClick={this.handleClick}>{this.getDateString(time)}</div>
+                        </div>
                     </div>
+
+                    <div>
+                        <DatePicker
+                            value={this.state.time}
+                            isOpen={this.state.isOpen}
+                            onSelect={this.handleSelect}
+                            onCancel={this.handleCancel}
+                            dateFormat={['MM', 'DD', 'hh', 'mm']}
+                            showFormat={'YYYY-MM-DD hh:mm'}
+                            theme={'android'} />
+                    </div>
+
                     <div className="form-group">
                         <label>联系电话</label><label style={{'color': 'red'}}>{this.state.warningInfo}</label>
-                        <label><input id="bookPersonTel" className="orderInfo-right text-right" onChange={this.handleTelChange}
-                            required="required" pattern="[0-9]" value={this.state.bookPersonTel}></input></label>
+                        <label><input id="bookPersonTel" onChange={this.handleTelChange}
+                             value={this.state.bookPersonTel} placeholder="联系电话"></input></label>
                     </div>
 
                     <div className="payment">
@@ -137,6 +153,33 @@ class Order extends Component {
             </div>
         );
     }
+
+
+    handleClick = () => {
+        this.setState({ isOpen: true });
+    }
+
+    handleCancel = () => {
+        this.setState({ isOpen: false });
+    }
+
+    handleSelect = (time) => {
+        this.setState({ time, isOpen: false });
+    }
+
+    getDateString(time) {
+        let year = time.getFullYear();
+        let month = time.getMonth() < 10 ? ("0"+time.getMonth()) : time.getMonth();
+        let day = time.getDate() < 10 ? ("0"+time.getDate()) : time.getDate();
+        let hour = time.getHours() < 10 ? ("0"+time.getHours()) : time.getHours();
+        let minute = time.getMinutes() < 10 ? ("0"+time.getMinutes()) : time.getMinutes();
+        // let second = time.getSeconds();
+        let dateString = year + "-" + month + "-" +day + " " + hour + ":" + minute;
+        return (dateString);
+    }
+
+    
+
 
     /**
      * 点击底栏的提交订单按钮，将订单信息提交到数据库

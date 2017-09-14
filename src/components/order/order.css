@@ -94,6 +94,21 @@ font-size: 14px;
 
 #bookPersonTel{
     width: 120px;
+    height: 40px;
+    float: right;
+    padding-top: 5px;
+    font-size: 16px;
+    text-align: right;
 }
 
+
+#planMealTime{
+    width: 200px;
+    height: 40px;
+    float: right;
+    padding-top: 14px;
+    margin-right: 12px;
+    font-size: 16px;
+    text-align: right;
+}
 

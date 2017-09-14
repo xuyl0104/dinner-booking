@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-mobile-datepicker';
+
 import './App.css';
 import CanteenList from '../components/canteenlist/canteenlist';
 import Menu from '../components/menu/menu';
@@ -10,10 +12,17 @@ import CanteenCard from '../components/common-components/canteencard/canteencard
  * 餐厅点餐系统的首页面，用户可以选择餐厅就餐以及查看、处理订单
  */
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      time: new Date(),
+      isOpen: false   
+    };
+  }
+  
   render() {
     //临时测试数据，点击餐厅卡片进入相应餐厅界面
     let testObject = {id: 2, name: "S06"};
-
     return (
       <div>
         <Header name={"浪潮餐厅"} onLeftArrowClick={() => this.quitApp()}/>
