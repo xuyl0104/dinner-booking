@@ -10,7 +10,6 @@ import OrderList from './components/orderlist/orderlist';
 import './css/basic.css';
 
 ReactDOM.render(
-    // <Provider>
     <Router>
         <div>
             <Route exact path="/" component={App} />
@@ -21,6 +20,5 @@ ReactDOM.render(
             <Route path="/orderList" component={OrderList} />
         </div>
     </Router>,
-    // </Provider>,
     document.getElementById('root')
 );

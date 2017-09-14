@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import DatePicker from 'react-mobile-datepicker';
-
 import './App.css';
 import CanteenList from '../components/canteenlist/canteenlist';
-import Menu from '../components/menu/menu';
 import Header from '../components/common-components/header/header';
 import Listview from '../components/common-components/listview/listview';
 import CanteenCard from '../components/common-components/canteencard/canteencard';
@@ -30,8 +27,8 @@ class App extends Component {
           <Listview name={"餐厅选择"} onClick={() => this.selectCanteen()}/>
           <Listview name={"我的订单"} onClick={() => this.goToOrderList()}/>
           <div className="noStyle"><label>最近选择</label></div>
-          <CanteenCard imgSrc={'../images/canteen.png'} onCardClick={this.goToCanteen.bind(this, testObject)}/>
-          <CanteenCard imgSrc={'../images/canteen.png'} onCardClick={this.goToCanteen.bind(this, testObject)}/>
+          <CanteenCard onCardClick={this.goToCanteen.bind(this, testObject)} canteenInfo={testObject}/>
+          <CanteenCard onCardClick={this.goToCanteen.bind(this, testObject)} canteenInfo={testObject}/>
         </div>
       </div>
     );

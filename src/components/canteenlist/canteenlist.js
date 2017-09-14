@@ -28,7 +28,7 @@ class CanteenList extends Component {
                 let canteensInThisPosition = this.getCanteensInThisPosition(pid);
                 let canteensInThisPositionDivs;
                 canteensInThisPositionDivs = canteensInThisPosition.map((canteen, cindex) => {
-                return (<CanteenCard key={cindex} onCardClick={this.getSelectedCanteen.bind(this, canteen)}/>);
+                return (<CanteenCard key={cindex} canteenInfo={canteen} onCardClick={this.getSelectedCanteen.bind(this, canteen)}/>);
                 });
                 return (
                     <div className="positionDiv" key={pindex}>

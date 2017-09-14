@@ -12,7 +12,7 @@ class CanteenCard extends Component {
                 <div><img className="imageblock" src={require("../../../images/canteen.png")} alt=""></img></div>
                 <div className="canteenInfo">
                     <div className="canteenName">
-                        <span>S06楼负一层茉莉餐厅</span>
+                        <span>{this.props.canteenInfo.name}</span>
                     </div>
                     <div className="category">
                         <span>套餐</span>

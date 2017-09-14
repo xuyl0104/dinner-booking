@@ -71,19 +71,24 @@
 
  .itemList .itemCard .addToCart{
     position: absolute;
-    top: 80px;
+    top: 85px;
     right: 10px;
     color: white;
     text-align: center;
     background-color: red;
     display: block;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     border-radius: 50%;
     font-family: Arial;
-    font-size: 28px;
+    font-size: 20px;
 }
 
 .itemList .itemCard .addToCart>span{
     font-family: Arial;
+}
+
+#redButton{
+    height: 40px;
+    width: 40px;
 }

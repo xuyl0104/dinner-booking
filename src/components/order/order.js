@@ -118,7 +118,7 @@ class Order extends Component {
                         <div className="radioGroup">
                             <div className="radios">
                                 <input type='radio' name='payment' value='0' defaultChecked/>签单
-                                <input className="billname" type='text' name='1' placeholder='请输入签单人信息' />
+                                <input id="billname" type='text' name='1' placeholder='请输入签单人信息' />
                                 <input type='radio' name='payment' value='cash' />现金        
                             </div>
                         </div>

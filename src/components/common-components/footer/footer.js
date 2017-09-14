@@ -18,7 +18,7 @@ class Footer extends Component {
                 <div className="sum">共{numOfItems}件&nbsp;&nbsp;¥{sumOfItems}</div>
                 
                 <div className={`order ${!orderButtonAvailable ? 'unavailable' : ''}`}  onClick={this.onOrderClicked.bind(this)}>
-                    <button disabled={!orderButtonAvailable}>下单</button>
+                    <button className={!orderButtonAvailable ? 'unavailable' : ''} disabled={!orderButtonAvailable}>下单</button>
                 </div>
             </footer>
         );

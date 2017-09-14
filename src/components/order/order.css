@@ -54,6 +54,12 @@ font-size: 14px;
     margin: 0;
 }
 
+#billname{
+    padding: 6px 0;
+    height: 40px;
+    margin-left: 6px;
+}
+
 
 .orderInformation{
     position: relative;
@@ -94,7 +100,7 @@ font-size: 14px;
 
 #bookPersonTel{
     width: 120px;
-    height: 40px;
+    height: 30px;
     float: right;
     padding-top: 5px;
     font-size: 16px;

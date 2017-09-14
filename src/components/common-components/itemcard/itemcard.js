@@ -15,7 +15,9 @@ class ItemCard extends Component {
                     <p className="itemContent">精选五花肉、白菜、干豆角、粉丝、木耳、油菜、米饭、汤</p>
                     <div className="itemPrice">¥{this.props.item.price}</div>
                 </div>
-                <div className="addToCart" onClick={this.onAddButtonClick.bind(this, this.props.item)}><span>+</span></div>
+                <span id="redButton" onClick={this.onAddButtonClick.bind(this, this.props.item)}>
+                    <div className="addToCart"><span>+</span></div>
+                </span>
             </div>
         );
     }
