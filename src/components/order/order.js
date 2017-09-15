@@ -14,6 +14,7 @@ class Order extends Component {
         super(props);
         let selectedCanteenInfo = JSON.parse(window.sessionStorage.getItem("selectedCanteenInfo"));
         let selectedItemInfo = JSON.parse(window.sessionStorage.getItem("selectedItemInfo"));
+        let tableNum = JSON.parse(window.sessionStorage.getItem("tableNum"));
         let orderTime = JSON.parse(window.sessionStorage.getItem("orderTime"));
 
         this.state = {
@@ -22,14 +23,16 @@ class Order extends Component {
             warningInfo: "",
             time: new Date(),
             isOpen: false,
-
+            tableNum: tableNum,
             selectedCanteenInfo: selectedCanteenInfo,//餐厅信息
             selectedItemInfo: selectedItemInfo,//菜信息
             planMealTime: "",//计划就餐时间
+            actualMealTime: "",
             bookPersonTel: "",
             payType: 0,
             paymentPerson: "",
             totalPrice: 0,
+            status: "tobevalidated",
             orderTime: ""
         };
         this.handleTelChange = this.handleTelChange.bind(this);
@@ -119,7 +122,7 @@ class Order extends Component {
                             <div className="radios">
                                 <input type='radio' name='payment' value='0' defaultChecked/>签单
                                 <input id="billname" type='text' name='1' placeholder='请输入签单人信息' />
-                                <input type='radio' name='payment' value='cash' />现金        
+                                <input type='radio' name='payment' value='1' />现金        
                             </div>
                         </div>
                     </div>
@@ -133,15 +136,20 @@ class Order extends Component {
 
 
                         <div className="itemsInThisOrder">
-                            <div style={{'display': `${itemsCCInThisOrder.length===0 ? 'none': ''}`}}>
-                                <p className="categoryName">炒菜</p>
+                            <div style={{'display': `${(itemsCCInThisOrder.length===0 || this.state.tableNum ===0) ? 'none': ''}`}}>
+                                <div className="inOneLine">
+                                    <label className="categoryName">炒菜</label>
+                                    <label id="tableNum">{this.state.tableNum}桌</label>
+                                </div>
                                 <div className="itemInThisOrder">
                                     {CCItemDivs}
                                 </div>
                             </div>
                             
-                            <div style={{'display': `${itemsTCInThisOrder.length===0 ? 'none': ''}`}}>
-                                <p className="categoryName">套餐</p>
+                            <div style={{'display': `${(itemsTCInThisOrder.length===0)? 'none': ''}`}}>
+                                <div className="inOneLine">
+                                    <label className="categoryName">套餐</label>
+                                </div>
                                 <div className="itemInThisOrder">
                                     {TCItemDivs}
                                 </div>
@@ -149,7 +157,7 @@ class Order extends Component {
                         </div>
                     </div> 
 
-                    <OrderFooter callBackSubmitOrder={this.submitOrder.bind(this)}/>                       
+                    <OrderFooter buttonName={"提交订单"} callBackSubmitOrder={this.submitOrder.bind(this)}/>                       
                 </div>
             </div>
         );
@@ -179,7 +187,30 @@ class Order extends Component {
         return (dateString);
     }
 
-    
+    /**
+     * 由于带有一个桌数输入框，在统计选中的菜的ID及每个菜的num时，比较麻烦
+     * 当桌数为0，每个炒菜都为0，此时selectedItemInfo即为itemsTCInThisOrder
+     * 当桌数不为0时，每个炒菜的个数为num*tablNum
+     */
+    getRealSelectedItemInfo() {
+        let tableNum = this.state.tableNum;
+        let realSelectedItemInfo;
+        if(tableNum == 0) {
+            let itemsTCInThisOrder = this.state.selectedItemInfo.filter((item) => item.type === "tc");
+            realSelectedItemInfo = itemsTCInThisOrder.map((item, index) => {
+                return {CourseID: item.id, CourseNum: item.num}
+            });
+        } else {
+            realSelectedItemInfo = this.state.selectedItemInfo.map((item, index) => {
+                if(item.type === 'cc'){
+                    return {CourseID: item.id, CourseNum: item.num*tableNum};
+                }else{
+                    return {CourseID: item.id, CourseNum: item.num};                    
+                }
+            });
+        }
+        return realSelectedItemInfo;
+    }
 
 
     /**
@@ -192,14 +223,28 @@ class Order extends Component {
         if (!validationStatus) {
             return;
         } else {
-            let orderTime = this.dateFtt("yyyy-MM-dd hh:mm:ss", new Date());
             //打包订单信息
-            //上传成功后，删除购物车信息（在此暂时保留）->
+            let orderTime = this.dateFtt("yyyy-MM-dd hh:mm:ss", new Date());//订单提交时间，意义不大
+            let CanteenID = this.state.selectedCanteenInfo.id;//所在餐厅ID
+            let BookPersonID = '';//订餐人ID
+            let BookPersonName = '';//订餐人姓名
+            let BookPersonTel = this.state.bookPersonTel;//订餐人联系电话
+            let PayType = this.state.payType;//结算方式，0-签单，1-现金
+            let PaymentPerson = this.state.paymentPerson;
+            let PlanMealTime = this.state.planMealTime;
+            let ActualMealTime = this.state.actualMealTime;
+            let TableNum = this.state.tableNum;
+            let TotalPrice = this.getSumOfItems(this.state.selectedItemInfo);
+            let Status = this.state.status;
+            let realSelectedItemInfo = this.getRealSelectedItemInfo();
+            console.log(realSelectedItemInfo);
+            //上传成功后，删除购物车信息（在此暂时保留）->try catch err throw...
             //window.sessionStorage.removeItem("selectedItemInfo"); ->
             //转到订单列表界面 ->
-            //setState异步执行，是个坑，不知这样是否合适
+            //setState异步执行，是个坑，不知这样是否合适,目测不需要
             this.setState({orderTime: orderTime}, ()=>{
                 window.localStorage.setItem("orders", JSON.stringify(this.state));
+                console.log(this.state);
                 this.goToOrderList();
                 window.sessionStorage.clear("selectedItemInfo");
             });
@@ -215,6 +260,7 @@ class Order extends Component {
     }
 
     /**
+     * (未用到)
      * 根据传入的购物车信息，计算共有多少件商品，用于在购物车图标上显示红色小圆圈
      * 可以改写为reduce方式
      * @param {*} selectedItemInfo
@@ -231,19 +277,31 @@ class Order extends Component {
      * 根据传入的购物车信息，计算总金额
      * @param {*} selectedItemInfo 
      */
+    // getSumOfItems(selectedItemInfo) {
+    //     let sumOfItems = 0;
+    //     for(let i = 0; i < selectedItemInfo.length; i++) {
+    //         sumOfItems = sumOfItems + selectedItemInfo[i].num * selectedItemInfo[i].price;
+    //     }
+    //     return sumOfItems;
+    // }
     getSumOfItems(selectedItemInfo) {
+        let tableNum = this.state.tableNum;
+        
         let sumOfItems = 0;
         for(let i = 0; i < selectedItemInfo.length; i++) {
-            sumOfItems = sumOfItems + selectedItemInfo[i].num * selectedItemInfo[i].price;
+            sumOfItems = sumOfItems + selectedItemInfo[i].num * selectedItemInfo[i].price * (selectedItemInfo[i].type === 'cc' ? tableNum : 1);
         }
         return sumOfItems;
     }
+
+    
 
     backToMenu() {
         this.props.history.goBack();        
     }
 
     /**
+     * 
      * 时间格式化处理
      */
     dateFtt(fmt,date) { 

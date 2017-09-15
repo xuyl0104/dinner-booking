@@ -7,7 +7,7 @@ class OrderFooter extends Component {
             <div>
                 <div className="footer">
                 <span className="footer-brand text-center"
-                onClick={this.onButtonClick.bind(this)}>提交订单</span>
+                onClick={this.onButtonClick.bind(this)}>{this.props.buttonName}</span>
                 </div>
             </div>
         );

@@ -26,7 +26,26 @@
     font-weight: bold;
     float: left;
     padding: 15px 0 0 12px;
+    margin-left: 5px;
 }
+
+
+#redBadge{
+    position: fixed;
+    bottom: 32px;
+    left: 42px;
+    height: 20px;
+    min-width: 20px;
+    background-color: red;
+    border-radius: 50%;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    padding: 1px 2px;
+}
+
 
 .footer .order{
     float: right;

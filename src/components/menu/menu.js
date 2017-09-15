@@ -13,6 +13,7 @@ class Menu extends Component {
         super(props);
         let canteenInfo = JSON.parse(window.sessionStorage.getItem("selectedCanteenInfo"));//这个方法不好,没使用
         let selectedItemInfo = JSON.parse(window.sessionStorage.getItem("selectedItemInfo")) || [];
+        let tableNum = JSON.parse(window.sessionStorage.getItem("tableNum")) || 1;
         this.state = {
             queryState: window.sessionStorage.getItem("cp_queryState")||'炒菜', //菜品选择：选择炒菜（cc）还是套餐（tc），默认为套餐，用于Tab页展示
             canteenInfo: canteenInfo,
@@ -63,6 +64,7 @@ class Menu extends Component {
             //返回到餐厅页面时，该属性需要写入数据库（这样设计我认为不合理，可以讨论...）
             //暂时用session替代
             selectedItemInfo: selectedItemInfo,
+            tableNum: tableNum,
 
             //是否弹出购物车界面，控制弹出界面是否隐藏
             showCart: false,
@@ -105,15 +107,30 @@ class Menu extends Component {
                 </div>
                 <ShoppingCart callBackAdd={this.addToCart.bind(this)} 
                     callBackRemove={this.removeOneFromCart.bind(this)}
+                    callBackMultiply={this.multiply.bind(this)}
                     callBackClearCart={this.clearCart.bind(this)} 
                     selectedItemInfo={this.state.selectedItemInfo} 
+                    tableNum={this.state.tableNum}
                     show={this.state.showCart} />
-                <Footer selectedItemInfo={this.state.selectedItemInfo} 
+                <Footer tableNum={this.state.tableNum} 
+                    selectedItemInfo={this.state.selectedItemInfo} 
                     callBackClickCart={this.clickCart.bind(this)}
                     callBackOrder={this.clickOrder.bind(this)}
                     orderButtonAvailable={this.state.selectedItemInfo.length > 0 ? true : false}/>
             </div>
         );
+    }
+
+    multiply(numOfTables) {
+        let numOfTablesParsed = parseInt(numOfTables, 10);
+        if(isNaN(numOfTablesParsed)) {
+            numOfTablesParsed = 1;
+        }
+        console.log("输入框："+numOfTablesParsed);
+        // let selectedItemInfo = this.state.selectedItemInfo;
+        this.setState({
+            tableNum: numOfTablesParsed
+        }, () => {console.log("multiplied by table #..." + this.state.tableNum);});
     }
 
 
@@ -221,7 +238,6 @@ class Menu extends Component {
         }));
     }
 
-
     /**
      * 点击下单按钮，前往下单界面
      * 将购物车信息暂存，以便下单中途返回时可以继续编辑购物车
@@ -229,7 +245,9 @@ class Menu extends Component {
      * session中的购物车在退出程序时，同步数据库，自动删除
      */
     clickOrder() {
+        console.log("桌数：" + this.state.tableNum);
         window.sessionStorage.setItem("selectedItemInfo", JSON.stringify(this.state.selectedItemInfo));
+        window.sessionStorage.setItem("tableNum", JSON.stringify(this.state.tableNum));
         this.props.history.push({
             pathname: '/order',
             state: this.state.selectedItemInfo
@@ -242,7 +260,8 @@ class Menu extends Component {
     clearCart() {
         // console.log("Clearing cart info");
         this.setState({
-            selectedItemInfo: []
+            selectedItemInfo: [],
+            tableNum: 1
         });
     }
 

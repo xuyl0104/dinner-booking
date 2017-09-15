@@ -22,13 +22,13 @@ class OrderList extends Component {
                 status = statusArray[3];break;
         }
         return (
-            <div className="orderCardInList">
+            <div className="orderCardInList" onClick={this.goToOrderInformation.bind(this)}>
                 <div className="leftBlock">
                     <div className="orderInfo">
-                        <label>订单编号:</label><span>S06201709081234</span>
+                        <label>订单编号:</label><span>{this.props.orderid}</span>
                     </div>
                     <div className="orderInfo">
-                        <span>2017-09-08 12:00 | 3桌</span>
+                        <span>2017-09-08 12:00 | 惠佳餐厅</span>
                     </div>
                     <div className="orderInfo">
                         <span>合计：126元</span>
@@ -42,13 +42,8 @@ class OrderList extends Component {
         );
     }
 
-    /**
-     * 点击header返回按钮返回到App页（首页）
-     */
-    backToApp() {
-        // this.props.history.push({
-        //     pathname: '/app',
-        // });
+    goToOrderInformation() {
+        this.props.callBackOrderClick();
     }
 }
 

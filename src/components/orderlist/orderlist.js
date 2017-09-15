@@ -14,20 +14,22 @@ class OrderList extends Component {
 
     render() {
         // Buttons
-        let swipeoutBtns = [{text: 'Button'}];
+        // let swipeoutBtns = [{text: 'Button'}];
+        let orderId = "20182729";
+        
         return (
             <div>
                 <Header name={"我的订单"} onLeftArrowClick={() => this.backToApp()}/>
                 <div className="orderList">
-                    <OrderListView status={"success"}/>
-                    <OrderListView status={"success"}/>
-                    <OrderListView status={"making"}/>
-                    <OrderListView status={"making"}/>
-                    <OrderListView status={"tobevalidated"}/>
-                    <OrderListView status={"tobevalidated"}/>
-                    <OrderListView status={"fail"}/>
-                    <OrderListView status={"fail"}/>
-                    <OrderListView status={"making"}/>
+                    <OrderListView orderId={orderId} status={"success"} callBackOrderClick={this.goToInformation.bind(this, orderId)}/>
+                    <OrderListView orderId={orderId} status={"success"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"making"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"making"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"tobevalidated"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"tobevalidated"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"fail"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"fail"} callBackOrderClick={this.goToInformation.bind(this)}/>
+                    <OrderListView orderId={orderId} status={"making"} callBackOrderClick={this.goToInformation.bind(this)}/>
                 </div>
             </div>
         );
@@ -39,6 +41,16 @@ class OrderList extends Component {
     backToApp() {
         this.props.history.push({
             pathname: '/app',
+        });
+    }
+
+    goToInformation(orderId) {
+        console.log("Go to see this order");
+        this.props.history.push({
+            pathname: '/orderInformation',
+            state: {
+                selectedOrderId: orderId
+            }
         });
     }
 }

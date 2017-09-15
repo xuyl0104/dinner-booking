@@ -43,6 +43,7 @@ class App extends Component {
     window.sessionStorage.removeItem("selectedCanteenInfo");
     window.sessionStorage.removeItem("cp_queryState");
     window.sessionStorage.removeItem("selectedItemInfo");
+    window.sessionStorage.removeItem("tableNum");
   }
 
   /**

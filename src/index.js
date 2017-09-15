@@ -6,6 +6,7 @@ import CanteenList from './components/canteenlist/canteenlist';
 import Menu from './components/menu/menu';
 import Order from './components/order/order';
 import OrderList from './components/orderlist/orderlist';
+import OrderInformation from './components/orderinformation/orderinformation';
 
 import './css/basic.css';
 
@@ -18,6 +19,7 @@ ReactDOM.render(
             <Route path="/menu" component={Menu} />
             <Route path="/order" component={Order} />
             <Route path="/orderList" component={OrderList} />
+            <Route path="/orderInformation" component={OrderInformation} />
         </div>
     </Router>,
     document.getElementById('root')

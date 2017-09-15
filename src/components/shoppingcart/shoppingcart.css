@@ -11,7 +11,7 @@
     /*visibility: hidden;*/
     z-index: 99;
     width: 100%;
-    max-height: 300px;
+    max-height: 400px;
     background-color: #F7F5F4;
 }
 
@@ -42,7 +42,7 @@
     /*visibility: hidden;*/
     z-index: 99;
     width: 100%;
-    max-height: 300px;
+    max-height: 400px;
     background-color: white;
 }
 
@@ -75,10 +75,51 @@
 }
 
 .hiddenDiv .category .categoryName{
-    font-size: 14px;
     border-left: 5px solid #FDA907;
     border-bottom: 1px solid #FFFFF0;
     padding-left: 4px;
+    margin-bottom: 8px;
+    
+}
+
+.hiddenDiv .category .categoryName>label{
+    font-size: 14px;
+    color: black;
+}
+
+
+#numOfTables{
+    font-size: 14px;
+    color: black;
+    float: right;
+    text-align: right;
+}
+#numOfTablesInput{
+    font-size: 14px;
+    color: black;
+    float: right;
+    text-align: right;
+    border: 1px solod white;
+    width: 50px;
+    margin-left: 5px;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    font-size: 8px;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-size: 8px;    
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-size: 8px;    
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 8px;    
+}
+
+#warningInfo{
+    color: red;
+    float: right;
 }
 
 .hiddenDiv .category .item{
@@ -90,10 +131,12 @@
 }
 .hiddenDiv .category .item .left{
     float: left;
+    padding-top: 15px;
 }
 
 .hiddenDiv .category .item .right{
     float: right;
+    padding-top: 15px;
 }
 
 
